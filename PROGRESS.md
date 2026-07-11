@@ -92,3 +92,18 @@
 **Blockers:** video recording + lablab form are user actions. Credits: est. ~$43 Fireworks remaining.
 
 **Next action (user):** warm both layers per runbook → record video → fill lablab form (checklist in SUBMISSION.md; cover + deck ready in docs/assets/). Then verify URL in incognito and submit with ≥45 min buffer.
+
+### Post-freeze hardening + judge library: DONE and LIVE ✅ (DEC-013)
+**Done:**
+- Rate limiting on /adjudicate (15/IP/hr · 80 global/hr · concurrency 2) — spam can no longer drain GPU credits
+- Cold-start fix: retry through DEPLOYMENT_SCALING_UP 503 (240s budget) — first judge click now succeeds instead of erroring (verified through a live 139s wake)
+- demo/library/: motor + travel copy-pastable pairs, both verified on real Gemma (FLAG 6/6, DENY 1/1) + adversarial claim; linked from README
+- README: Deployment + test-library sections; v0.2 design notes (Litmus scrape + Astryx plan) in docs/
+- PII sweep clean; accidental reference-screenshot commit scrubbed from history
+- Deployed and converged: Render live on repo HEAD, /health = Gemma deployment
+
+**Position:** everything code-side is DONE. Remaining: user records video (script + runbook in SUBMISSION.md) → lablab form (full field table prepared) → incognito check → submit ≥45 min early.
+
+**Blockers:** video + form are user actions. Est. credits: ~$40 Fireworks.
+
+**Next action (user):** say "warm it" → record → submit. Optional post-submission sidequest: MI300X pod footage via scripts/mi300x_serve.sh (confirm GPU with rocm-smi first; stop the pod if unused).
