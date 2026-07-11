@@ -9,10 +9,13 @@ import os
 import re
 import time
 
+from dotenv import load_dotenv
 from openai import OpenAI
 
 from app.prompts import build_messages
 from app.validation import validate_points
+
+load_dotenv()  # no-op in production containers where env vars are set directly
 
 BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.fireworks.ai/inference/v1")
 API_KEY = os.getenv("FIREWORKS_API_KEY") or os.getenv("OPENAI_API_KEY", "")

@@ -34,8 +34,8 @@ def get_demo(name: str):
     """name in {approve, flag, deny} → {"policy": ..., "claim": ...}"""
     if name not in {"approve", "flag", "deny"}:
         raise HTTPException(404, "Unknown scenario")
-    policy = (DEMO_DIR / "sample_policy.md").read_text()
-    claim = (DEMO_DIR / f"claim_{name}.md").read_text()
+    policy = (DEMO_DIR / "sample_policy.md").read_text(encoding="utf-8")
+    claim = (DEMO_DIR / f"claim_{name}.md").read_text(encoding="utf-8")
     return {"policy": policy, "claim": claim}
 
 

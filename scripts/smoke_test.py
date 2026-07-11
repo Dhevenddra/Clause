@@ -28,8 +28,8 @@ def list_models():
 def run_adjudication():
     from app.adjudicator import adjudicate, MODEL_ID
     demo = Path(__file__).resolve().parent.parent / "demo"
-    policy = (demo / "sample_policy.md").read_text()
-    claim = (demo / "claim_deny.md").read_text()
+    policy = (demo / "sample_policy.md").read_text(encoding="utf-8")
+    claim = (demo / "claim_deny.md").read_text(encoding="utf-8")
     print(f"Model: {MODEL_ID}\nAdjudicating demo 'deny' scenario…\n")
     result = adjudicate(policy, claim)
     print(json.dumps(result, indent=2))
