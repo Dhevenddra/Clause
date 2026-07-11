@@ -10,7 +10,7 @@ import re
 import time
 
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import InternalServerError, OpenAI
 
 from app.prompts import build_messages
 from app.validation import validate_points
@@ -40,13 +40,26 @@ def _extract_json(raw: str) -> dict:
         return json.loads(m.group(0))
 
 
+_SCALEUP_BUDGET_S = 240  # dedicated deployment cold-starts from zero replicas; be patient, not brittle
+
+
 def _call_model(messages: list[dict]) -> dict:
-    resp = _client.chat.completions.create(
-        model=MODEL_ID,
-        messages=messages,
-        temperature=0.1,
-        max_tokens=6000,  # Gemma emits a reasoning stream before the JSON; leave generous headroom
-    )
+    deadline = time.time() + _SCALEUP_BUDGET_S
+    while True:
+        try:
+            resp = _client.chat.completions.create(
+                model=MODEL_ID,
+                messages=messages,
+                temperature=0.1,
+                max_tokens=6000,  # Gemma emits a reasoning stream before the JSON; leave generous headroom
+            )
+            break
+        except InternalServerError as exc:
+            # Fireworks returns an immediate 503 while the GPU scales up from zero.
+            if "DEPLOYMENT_SCALING_UP" in str(exc) and time.time() < deadline:
+                time.sleep(15)
+                continue
+            raise
     return _extract_json(resp.choices[0].message.content or "")
 
 

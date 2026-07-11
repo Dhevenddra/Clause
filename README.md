@@ -31,6 +31,20 @@ vllm serve google/gemma-4-31b-it   # any served Gemma variant works
 ```
 Then in `.env`: `OPENAI_BASE_URL=http://<pod-address>:8000/v1` and set `MODEL_ID` to the served name. Same app, zero code changes.
 
+## Try it with more than the built-in cases
+`demo/library/` has copy-pastable policy + claim pairs in other domains (motor,
+travel) plus an adversarial claim that invents policy provisions — see
+[demo/library/README.md](demo/library/README.md). Paste any pair into the live app;
+edit a clause and watch the decision and its citations change.
+
+## Deployment
+- **Live:** Render (Docker runtime, free tier) via `render.yaml` — set
+  `FIREWORKS_API_KEY` and `MODEL_ID` in the dashboard, never in the repo.
+- **Model:** Gemma 4 31B IT (NVFP4) on a dedicated Fireworks deployment with
+  autoscale-to-zero; the app patiently retries while the GPU wakes (~1–2 min from idle).
+- **Abuse guard:** `/adjudicate` is rate-limited (per-IP and global hourly caps,
+  small concurrency gate) because each call runs on metered GPU time.
+
 ## How the trust core works
 1. One structured Gemma call (no chains, no agents) returns a decision + points, each with a **verbatim** policy quote.
 2. `app/validation.py` normalizes both sides (whitespace, unicode quotes/dashes) and requires an exact substring match, mapping the match back to a character span in the original text.
