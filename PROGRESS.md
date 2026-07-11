@@ -127,3 +127,17 @@
 - **The build is done. Every KICKOFF Definition-of-Done item shipped.**
 
 **Post-submission options (user's call, in order of value):** keep demo warm through judging · MI300X pod: `rocm-smi` → vLLM sidequest or stop it · GHCR image push (needs one-time browser auth) · Astryx/Litmus v0.2 spike on an isolated branch · after results: POST-HACKATHON-CLEANUP.md (local).
+
+### Day closed — 2026-07-11 evening
+- **SUBMITTED** (see H8 above). Demo live, all artifacts in.
+- AMD pod sidequest attempted post-submission, then paused by user (optional item):
+  pod GPU = Radeon 7900-class (0x744b), **not** MI300X; pod's vLLM (2026-03-18 build)
+  predates Gemma 4 → fallback `google/gemma-3-4b-it` is HF license-gated, needs user's
+  HF login to resume. Resume steps + state recorded (also in assistant memory).
+  User advised to STOP the pod while away (idle quota burn).
+- Retrospective + reusable pitch-video skill written to `local/` (gitignored, private).
+
+**Blockers:** none. Everything that remains is optional.
+**Next action (whenever the user returns):** either resume the pod sidequest at the
+HF-license step, start the Astryx v0.2 spike on an isolated branch, or simply wait
+for results and then run POST-HACKATHON-CLEANUP.md.
