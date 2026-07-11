@@ -78,3 +78,17 @@
 **Blockers:** none. Credits: ~$45 Fireworks remaining (est.), Render free tier fine.
 
 **Next action:** tag v0.1.0 + push → H7: cover image, deck outline, video walkthrough on the deployed URL (user records), warm both host + GPU right before recording.
+
+### H6 — Freeze + package: DONE ✅ · H7 — assets DONE, recording with user
+**Done:**
+- Feature freeze; tagged **v0.1.0** and pushed; repo public with final README (live URL + dedicated-deployment MODEL_ID guidance)
+- **Slide deck**: `docs/assets/CLAUSE-deck.pdf` (6 slides, app design language, generated from `slides.html` via headless Edge; footer-overlap fixed and verified)
+- **Cover image**: `docs/assets/cover.png` (real DENY run on the live URL)
+- **Adversarial demo**: `demo/claim_adversarial.md` — tested on real Gemma: FLAG 3/3 verified, refuses to ground three fabricated provisions. Video beat reframed ("trust under attack") since Gemma resists hallucination bait — rejected-state shown honestly via test suite (11/11) or fixture still, never faked live
+- **Demo-day runbook** added to SUBMISSION.md: warm-up sequence (Render ~50s + GPU ~1–2 min), per-click cost ≈ $1, live latencies per scenario
+
+**Position:** end of H7 prep. Remaining: user records ≤3-min video per SUBMISSION.md script → H8 lablab form + final incognito URL check.
+
+**Blockers:** video recording + lablab form are user actions. Credits: est. ~$43 Fireworks remaining.
+
+**Next action (user):** warm both layers per runbook → record video → fill lablab form (checklist in SUBMISSION.md; cover + deck ready in docs/assets/). Then verify URL in incognito and submit with ≥45 min buffer.
