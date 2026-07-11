@@ -50,3 +50,16 @@
 2. Fireworks Gemma deployment (`clause-gemma`, 1-GPU shape, min 0/max 1) → need the deployment/model ID to flip MODEL_ID and tune prompts against real Gemma
 
 **Next action:** on Render URL — verify deployed deny flow in incognito; on Gemma ID — smoke test, check citation verification rate, tighten prompts.py rule 2 with one few-shot verbatim-quote example if <70%.
+
+### H4 — Deploy: DONE ✅
+**Done:**
+- Render service created **via REST API** (user's key; no dashboard needed) — DEC-011. Docker runtime, free plan, Singapore, /health check, auto-deploy from main
+- **Public URL live: https://clause-4vv4.onrender.com** — verified twice: REST (DENY, 1/1, 2.7s) and full real-browser pass (deny flow, citation ledger, seals, clean UTF-8)
+- Render MCP server registered (tools available next session; REST API suffices meanwhile)
+
+**Position:** H4 done ahead of schedule. H5 mostly done. H6 Docker check done. Remaining core work: Gemma flip + prompt tuning (H5 tail), README/tag freeze (H6), video+deck (H7), submit (H8).
+
+**Blockers:**
+- Fireworks Gemma deployment: 31B IT offers only 4-GPU shapes ($28–40/hr!). User trying smaller/quantized Gemma variants (NVFP4 → 26B A4B → E4B) per my guidance; also told to cut Scale-to-Zero Window from 60 min to seconds (credit protection)
+
+**Next action:** user reports NVFP4 shape/price → lock deployment → flip MODEL_ID (local .env + Render env via API) → smoke test real Gemma → tune prompts.py rule 2 if verification <70%.
