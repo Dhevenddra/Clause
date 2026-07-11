@@ -1,0 +1,1 @@
+Update PROGRESS.md with: what was completed this session, current position in the KICKOFF hour plan, blockers, and the exact next action. Append any new decisions to DECISIONS.md (DEC-NNN, append-only). Commit all changes with a descriptive message.

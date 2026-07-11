@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CLAUSE — every decision, cited</title>
+<!--
+  BUILD NOTE (Claude Code, H2-H3): implement per docs/v0.1/PRD.md §UI design brief.
+  This shell defines structure + working JS wiring so the loop is testable immediately.
+  Replace the placeholder styling with the full design pass (palette tokens, type,
+  verification-stamp signature element, clause highlighting via span offsets, cascade-in
+  motion with reduced-motion respect). Keep IDs and the fetch contract intact.
+-->
+<style>
+  :root{
+    --ink:#1B1F2A; --paper:#FAFAF7; --stamp-red:#B3372E;
+    --amber:#B07C24; --verified:#2E6B4F; --rule:#D8D6CE;
+  }
+  body{font-family:system-ui,sans-serif;background:var(--paper);color:var(--ink);margin:0;padding:2rem;max-width:1100px;margin-inline:auto}
+  textarea{width:100%;min-height:220px;font-family:monospace;font-size:.85rem}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .banner{padding:1rem;border:2px solid var(--rule);margin:1rem 0;font-weight:700}
+  .banner.APPROVE{border-color:var(--verified);color:var(--verified)}
+  .banner.FLAG{border-color:var(--amber);color:var(--amber)}
+  .banner.DENY{border-color:var(--stamp-red);color:var(--stamp-red)}
+  .point{border:1px solid var(--rule);padding: .75rem;margin:.5rem 0}
+  .point blockquote{font-family:monospace;background:#fff;border-left:3px solid var(--rule);margin:.5rem 0;padding:.5rem}
+  .stamp{font-size:.75rem;font-weight:700;letter-spacing:.05em}
+  .stamp.ok{color:var(--verified)} .stamp.bad{color:var(--stamp-red);text-decoration:line-through}
+  mark{background:#f5e9a8}
+  button{cursor:pointer}
+</style>
+</head>
+<body>
+  <header>
+    <h1>CLAUSE</h1>
+    <p>Auditable claims adjudication. Every decision point cited to a verified policy clause. Gemma on AMD.</p>
+    <nav>
+      Demo scenarios:
+      <button data-demo="approve">Approve case</button>
+      <button data-demo="flag">Flag case</button>
+      <button data-demo="deny">Deny case</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="cols">
+      <section><h2>Policy</h2><textarea id="policy" placeholder="Paste the policy text…"></textarea></section>
+      <section><h2>Claim</h2><textarea id="claim" placeholder="Paste the claim…"></textarea></section>
+    </div>
+    <p><button id="adjudicate">Adjudicate</button> <span id="status"></span></p>
+
+    <section id="result" hidden>
+      <div id="banner" class="banner"></div>
+      <div id="rationale"></div>
+      <h2>Citation ledger</h2>
+      <div id="points"></div>
+      <div id="missing"></div>
+      <p><button id="download">Download audit record</button></p>
+      <h2>Policy (evidence view)</h2>
+      <pre id="policyView" style="white-space:pre-wrap"></pre>
+    </section>
+  </main>
+
+<script>
+const $ = id => document.getElementById(id);
+let lastResult = null, lastPolicy = "";
+
+document.querySelectorAll("[data-demo]").forEach(b => b.onclick = async () => {
+  const r = await fetch(`/demo/${b.dataset.demo}`); const d = await r.json();
+  $("policy").value = d.policy; $("claim").value = d.claim;
+});
+
+$("adjudicate").onclick = async () => {
+  $("status").textContent = "Adjudicating…";
+  $("result").hidden = true;
+  try {
+    const res = await fetch("/adjudicate", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({policy: $("policy").value, claim: $("claim").value})
+    });
+    if (!res.ok) throw new Error((await res.json()).detail || res.statusText);
+    lastResult = await res.json(); lastPolicy = $("policy").value;
+    render(lastResult);
+  } catch (e) { $("status").textContent = "Error: " + e.message; return; }
+  $("status").textContent = "";
+};
+
+function render(r) {
+  $("banner").className = "banner " + r.decision;
+  $("banner").textContent = `${r.decision} — risk score ${r.risk_score}/100 · ${r.audit.citations_verified}/${r.audit.citations_total} citations verified · ${r.audit.latency_s}s`;
+  $("rationale").textContent = r.rationale;
+  $("points").innerHTML = r.points.map((p, i) => `
+    <div class="point">
+      <div>${p.finding} <em>(supports ${p.supports})</em></div>
+      <blockquote>${escapeHtml(p.citation)}</blockquote>
+      <span class="stamp ${p.verified ? "ok" : "bad"}">
+        ${p.verified ? "✓ VERIFIED IN SOURCE" : "✗ NOT IN SOURCE — excluded from decision basis"}
+      </span>
+      ${p.verified ? `<button onclick="highlight(${i})">Show clause</button>` : ""}
+    </div>`).join("");
+  $("missing").innerHTML = r.missing_information.length
+    ? "<h3>Missing information</h3><ul>" + r.missing_information.map(m => `<li>${escapeHtml(m)}</li>`).join("") + "</ul>" : "";
+  $("policyView").textContent = lastPolicy;
+  $("result").hidden = false;
+}
+
+function highlight(i) {
+  const p = lastResult.points[i]; if (!p.span) return;
+  const [s, e] = p.span, t = lastPolicy;
+  $("policyView").innerHTML = escapeHtml(t.slice(0, s)) + "<mark>" + escapeHtml(t.slice(s, e)) + "</mark>" + escapeHtml(t.slice(e));
+  document.querySelector("mark").scrollIntoView({behavior: "smooth", block: "center"});
+}
+
+$("download").onclick = () => {
+  const blob = new Blob([JSON.stringify(lastResult, null, 2)], {type: "application/json"});
+  const a = Object.assign(document.createElement("a"), {href: URL.createObjectURL(blob), download: "clause_audit_record.json"});
+  a.click();
+};
+
+function escapeHtml(s){return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+</script>
+</body>
+</html>

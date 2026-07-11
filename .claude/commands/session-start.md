@@ -1,0 +1,1 @@
+Read CLAUDE.md, DECISIONS.md, PROGRESS.md, and all files in docs/v0.1/ (KICKOFF, PRD, RESEARCH), in that order. Summarize: current hour in the KICKOFF plan, the immediate next action, and any open blockers from PROGRESS.md. Then confirm scope freeze (DEC-008) and begin the next action without waiting.
