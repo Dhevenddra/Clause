@@ -1,0 +1,15 @@
+# Render Blueprint — one-click deploy of CLAUSE (DEC-007)
+# Dashboard → New → Blueprint → select this repo.
+services:
+  - type: web
+    name: clause
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: FIREWORKS_API_KEY
+        sync: false # set in dashboard — never in the repo
+      - key: OPENAI_BASE_URL
+        value: https://api.fireworks.ai/inference/v1
+      - key: MODEL_ID
+        sync: false # set in dashboard — Gemma deployment ID (DEC-010)
