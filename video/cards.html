@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CLAUSE — video cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1F2A; --ink-60:rgba(27,31,42,.62); --paper:#FAFAF7; --paper-2:#F3F2EC;
+    --stamp-red:#B3372E; --verified:#2E6B4F; --rule:#D8D6CE;
+    --display:"Archivo",sans-serif; --body:"Inter",sans-serif; --mono:"IBM Plex Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  .card{
+    width:1280px;height:720px;background:var(--paper);color:var(--ink);position:relative;
+    font-family:var(--body);padding:70px 90px;display:flex;flex-direction:column;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .formline{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);border-bottom:1px solid var(--rule);padding-bottom:12px}
+  .mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+  h1{font-family:var(--display);font-variation-settings:"wdth" 116,"wght" 850;text-transform:uppercase;line-height:1.02;letter-spacing:-.01em}
+  .foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);border-top:3px double var(--ink);padding-top:14px}
+  .mono{font-family:var(--mono)}
+  .stamp{display:inline-block;font-family:var(--display);font-variation-settings:"wdth" 120,"wght" 900;text-transform:uppercase;border:5px double currentColor;border-radius:4px;padding:8px 24px;transform:rotate(-2.5deg)}
+  .quote{font-family:var(--mono);background:var(--paper-2);border-left:4px solid var(--ink);padding:18px 24px;font-size:22px;line-height:1.6}
+</style>
+</head>
+<body>
+
+<section class="card" id="card1">
+  <div class="formline"><span>Form CL-1 · Adjudication record</span><span>CLAUSE.</span></div>
+  <div class="mid">
+    <h1 style="font-size:54px">Insurers can't use AI for claims.<br><span style="color:var(--stamp-red)">Not because it isn't smart.</span><br>Because it can't be audited.</h1>
+    <p style="font-size:24px;color:var(--ink-60);margin-top:30px">One unexplainable denial is a compliance event.</p>
+  </div>
+  <div class="foot"><span>CLAUSE — every decision, cited</span><span>AMD Developer Hackathon · ACT II</span></div>
+</section>
+
+<section class="card" id="card7">
+  <div class="formline"><span>Under the hood</span><span>CLAUSE.</span></div>
+  <div class="mid">
+    <h1 style="font-size:60px">One structured Gemma call.<br>No chains. No agents.</h1>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:44px;max-width:900px">
+      <div class="quote">OPENAI_BASE_URL=https://api.fireworks.ai/inference/v1<br>MODEL_ID=…/gemma-4-31b-it-nvfp4#…/clause-gemma</div>
+      <div style="text-align:center;color:var(--ink-60);font-size:26px" class="mono">⇅ one env var</div>
+      <div class="quote">OPENAI_BASE_URL=http://mi300x-pod:8000/v1 &nbsp;<span style="color:var(--ink-60)"># vLLM · ROCm · AMD Instinct</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Gemma (open-weight)</span><span>Fireworks · MI300X / vLLM / ROCm</span></div>
+</section>
+
+<section class="card" id="card8">
+  <div class="formline"><span>Form CL-1 · Adjudication record</span><span>AMD Developer Hackathon · ACT II</span></div>
+  <div class="mid" style="align-items:flex-start">
+    <h1 style="font-size:150px">Clause<span style="color:var(--stamp-red)">.</span></h1>
+    <p style="font-size:30px;margin-top:24px"><strong>Every decision, cited.</strong></p>
+    <div style="margin-top:44px"><span class="stamp" style="color:var(--verified);font-size:40px">✓ Verified in source</span></div>
+    <p class="mono" style="margin-top:52px;font-size:19px">clause-4vv4.onrender.com · github.com/Dhevenddra/Clause</p>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1</span><span>Gemma · AMD · Fireworks</span></div>
+</section>
+
+</body>
+</html>

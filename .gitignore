@@ -5,3 +5,8 @@ __pycache__/
 
 .playwright-mcp/
 /*.png
+video/raw/
+video/segs/
+video/audio/
+video/cards/
+video/marks.json
