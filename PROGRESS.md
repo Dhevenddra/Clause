@@ -107,3 +107,15 @@
 **Blockers:** video + form are user actions. Est. credits: ~$40 Fireworks.
 
 **Next action (user):** say "warm it" → record → submit. Optional post-submission sidequest: MI300X pod footage via scripts/mi300x_serve.sh (confirm GPU with rocm-smi first; stop the pod if unused).
+
+### H7 — Pitch video: DONE via automation ✅ (DEC-014)
+**Done:**
+- `video/CLAUSE-pitch.mp4` — **2:02**, 1280×720, 9.4 MB. Fully automated: edge-tts (AndrewNeural) narration → Playwright-recorded footage of the LIVE URL (real Gemma inference: DENY verdict, citation highlight, adversarial FLAG, audit record) → HTML title cards → ffmpeg assembly. Pipeline scripts committed in `video/`
+- Frame-checked at 8 timestamps; title-card sizing bug caught and fixed
+- Memory files written (deploy ops, git identity, working discipline) per founder request
+
+**Position:** ALL submission artifacts exist. H8 remains: lablab form + final incognito verification + submit ≥45 min before deadline.
+
+**Blockers:** none on my side. User: watch the video once, then submit.
+
+**Next action (user):** watch `video/CLAUSE-pitch.mp4` → upload video + `docs/assets/CLAUSE-deck.pdf` + `docs/assets/cover.png` to the lablab form (field table in chat / SUBMISSION.md) → incognito-check https://clause-4vv4.onrender.com → submit.
