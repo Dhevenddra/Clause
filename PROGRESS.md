@@ -31,3 +31,22 @@
 - Gemma deployment creation (user action, Fireworks dashboard: gemma-4-31b-it, min replicas 0/max 1, name `clause-gemma`). MODEL_ID **must** flip to it before demo/submission — stand-in never ships.
 
 **Next action:** H2–H3 — wire `POST /adjudicate` verification on the running app, full UI pass on `static/index.html` (keep element IDs + fetch contract), then H4 deploy.
+
+### H2–H3 — Core loop + UI: DONE · H5 largely done · H6 Docker check done early
+**Done:**
+- Full UI pass on `static/index.html` per PRD §UI (ink-on-paper ledger, Archivo/Inter/IBM Plex Mono, rubber-stamp verdict with texture mask, verification seals, clause-highlight sweep, cascade-in reveal with reduced-motion respect, loading state w/ client-side SHA-256, empty/error states, .txt/.md upload, responsive). IDs + fetch contract intact
+- Verified in browser via Playwright: deny flow end-to-end, clause highlight, rejected-citation state (injected fixture: struck quote + red "✗ NOT IN SOURCE" seal)
+- Bug fixes: `load_dotenv()` missing in adjudicator (uvicorn 502), UTF-8 reads for demo files (Windows cp1252 mojibake)
+- H5: `scripts/test_validation.py` — 11/11 edge cases pass (curly quotes, dashes, nbsp, whitespace, cross-newline spans; paraphrase/fabrication correctly rejected)
+- H6 (early): Docker image builds `linux/amd64` and adjudicates through the container (DENY, 2/2 verified, 5.5s)
+- H4 prep: `render.yaml` blueprint + PORT-aware Dockerfile CMD pushed; exact Render steps given to user
+- `scripts/mi300x_serve.sh` ready for the post-H6 pod sidequest
+- Astryx (Meta design system) suggested by user → deferred to post-submission v0.2 (DEC-005/DEC-008: no build step, scope frozen)
+
+**Position:** H4 (deploy) in flight — blueprint ready, awaiting user's Render account setup.
+
+**Blockers (both user actions, in progress):**
+1. Render deploy → need the public URL once the blueprint is applied
+2. Fireworks Gemma deployment (`clause-gemma`, 1-GPU shape, min 0/max 1) → need the deployment/model ID to flip MODEL_ID and tune prompts against real Gemma
+
+**Next action:** on Render URL — verify deployed deny flow in incognito; on Gemma ID — smoke test, check citation verification rate, tighten prompts.py rule 2 with one few-shot verbatim-quote example if <70%.
