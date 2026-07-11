@@ -45,7 +45,7 @@ def _call_model(messages: list[dict]) -> dict:
         model=MODEL_ID,
         messages=messages,
         temperature=0.1,
-        max_tokens=2000,
+        max_tokens=6000,  # Gemma emits a reasoning stream before the JSON; leave generous headroom
     )
     return _extract_json(resp.choices[0].message.content or "")
 
