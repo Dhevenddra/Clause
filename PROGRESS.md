@@ -119,3 +119,11 @@
 **Blockers:** none on my side. User: watch the video once, then submit.
 
 **Next action (user):** watch `video/CLAUSE-pitch.mp4` → upload video + `docs/assets/CLAUSE-deck.pdf` + `docs/assets/cover.png` to the lablab form (field table in chat / SUBMISSION.md) → incognito-check https://clause-4vv4.onrender.com → submit.
+
+### H8 — SUBMITTED ✅ 2026-07-11
+- lablab form completed and submitted: title, short/long descriptions, judge-logistics notes in Additional Information, Docker field N/A (Track 3), categories Fintech/Agents, tech tags Gemma·Fireworks·AMD·Python
+- Video (2:02 MP4), deck PDF, cover image uploaded; demo URL + repo linked
+- Pre-submit checks: incognito run of all three cases ✅ · DECISIONS.md PII re-scan clean ✅ · stack warmed at the moment of submission ✅
+- **The build is done. Every KICKOFF Definition-of-Done item shipped.**
+
+**Post-submission options (user's call, in order of value):** keep demo warm through judging · MI300X pod: `rocm-smi` → vLLM sidequest or stop it · GHCR image push (needs one-time browser auth) · Astryx/Litmus v0.2 spike on an isolated branch · after results: POST-HACKATHON-CLEANUP.md (local).
