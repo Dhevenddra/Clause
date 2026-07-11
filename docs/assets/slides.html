@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CLAUSE — deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1F2A; --ink-60:rgba(27,31,42,.62); --ink-35:rgba(27,31,42,.35);
+    --paper:#FAFAF7; --paper-2:#F3F2EC; --stamp-red:#B3372E; --amber:#B07C24;
+    --verified:#2E6B4F; --rule:#D8D6CE;
+    --display:"Archivo",sans-serif; --body:"Inter",sans-serif; --mono:"IBM Plex Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  @page{size:1280px 720px;margin:0}
+  body{font-family:var(--body);color:var(--ink);background:#888}
+  .slide{
+    width:1280px;height:720px;background:var(--paper);position:relative;overflow:hidden;
+    padding:64px 84px;page-break-after:always;display:flex;flex-direction:column;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .formline{
+    display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);
+    border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:40px;
+  }
+  h1{font-family:var(--display);font-variation-settings:"wdth" 118,"wght" 860;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
+  h2{font-family:var(--display);font-variation-settings:"wdth" 110,"wght" 800;font-size:44px;text-transform:uppercase;letter-spacing:.01em;margin-bottom:28px}
+  .dot{color:var(--stamp-red)}
+  p,li{font-size:21px;line-height:1.55;color:var(--ink)}
+  .muted{color:var(--ink-60)}
+  .mono{font-family:var(--mono)}
+  .rule-top{border-top:3px double var(--ink);padding-top:18px}
+  ul{padding-left:26px}
+  li{margin:10px 0}
+  .tight li{font-size:19.5px;margin:8px 0}
+  li::marker{color:var(--stamp-red)}
+  .foot{
+    position:absolute;left:84px;right:84px;bottom:34px;display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);
+    border-top:1px solid var(--rule);padding-top:12px;
+  }
+  .stamp{
+    display:inline-block;font-family:var(--display);font-variation-settings:"wdth" 120,"wght" 900;
+    text-transform:uppercase;border:5px double currentColor;border-radius:4px;
+    padding:10px 26px;transform:rotate(-2.5deg);
+  }
+  .seal{
+    display:inline-block;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;border:2px solid currentColor;border-radius:2px;padding:9px 14px;transform:rotate(2.5deg);
+  }
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;flex:1;align-content:start}
+  .quote{font-family:var(--mono);background:var(--paper-2);border-left:4px solid var(--ink);padding:16px 20px;font-size:17px;line-height:1.6}
+  .kpi{font-family:var(--display);font-variation-settings:"wdth" 112,"wght" 860;font-size:56px}
+  .kpi small{font-size:20px;font-family:var(--mono);font-weight:400;color:var(--ink-60);display:block;letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+  .flow{display:flex;align-items:stretch;gap:0;margin-top:8px}
+  .fstep{flex:1;border:1.5px solid var(--ink);padding:18px 18px;background:#fff}
+  .fstep h4{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:8px}
+  .fstep p{font-size:16.5px;line-height:1.45}
+  .farrow{display:flex;align-items:center;padding:0 10px;font-size:26px;color:var(--ink-35)}
+  img.shot{width:100%;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(27,31,42,.15)}
+</style>
+</head>
+<body>
+
+<!-- 1 · cover -->
+<section class="slide">
+  <div class="formline"><span>Form CL-1 · Adjudication record</span><span>AMD Developer Hackathon · ACT II · Track 3</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <h1 style="font-size:150px">Clause<span class="dot">.</span></h1>
+    <p style="font-size:30px;margin-top:26px;max-width:21em"><strong>Every decision, cited.</strong> <span class="muted">Auditable AI claims adjudication — every conclusion grounded in a verbatim policy clause, machine-verified before it is shown.</span></p>
+    <p class="mono" style="margin-top:34px;font-size:17px">clause-4vv4.onrender.com &nbsp;·&nbsp; github.com/Dhevenddra/Clause</p>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1</span><span>Gemma (open-weight) · AMD · Fireworks</span></div>
+</section>
+
+<!-- 2 · problem -->
+<section class="slide">
+  <div class="formline"><span>02 · The problem</span><span>Clause.</span></div>
+  <h2>Unauditable AI can't touch regulated decisions</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Claims adjudication is high-volume, manual, and expensive — a hair-on-fire workflow at every insurer and TPA.</li>
+        <li>LLMs are blocked from it for one reason: <strong>a wrong or unexplainable denial is a compliance event.</strong></li>
+        <li>"Trust me" prompting doesn't survive an audit. Regulators want the clause, not the vibe.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:30px;justify-content:center">
+      <div class="quote">"Why was this claim denied?"<br><span class="muted">— every regulator, every dispute, every time</span></div>
+      <div><span class="stamp" style="color:var(--stamp-red);font-size:34px">Unexplainable</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1</span><span>every decision, cited</span></div>
+</section>
+
+<!-- 3 · product -->
+<section class="slide">
+  <div class="formline"><span>03 · The product</span><span>Clause.</span></div>
+  <h2>Decision + verified-citation ledger</h2>
+  <div class="cols" style="grid-template-columns:1.25fr 1fr">
+    <div><img class="shot" src="cover.png" alt="CLAUSE rendering a DENY with verified citations"></div>
+    <div>
+      <ul>
+        <li>Paste (or load) a <strong>policy + claim</strong> → one structured Gemma call.</li>
+        <li><strong>APPROVE / FLAG / DENY</strong> + risk score + plain-language rationale.</li>
+        <li>Every decision point cites a <strong>verbatim clause</strong>, stamped <span class="seal" style="color:var(--verified);font-size:11px">✓ Verified in source</span></li>
+        <li>Click a citation → the exact clause lights up in the policy.</li>
+        <li>Downloadable audit record: input hashes, model ID, per-citation verification.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1</span><span>live at clause-4vv4.onrender.com</span></div>
+</section>
+
+<!-- 4 · trust core -->
+<section class="slide">
+  <div class="formline"><span>04 · The trust core</span><span>Clause.</span></div>
+  <h2>Zero hallucination by construction</h2>
+  <p class="muted" style="margin-bottom:26px">Trust is enforced by code, not promised by prompt.</p>
+  <div class="flow">
+    <div class="fstep"><h4>1 · Extract</h4><p>Gemma must quote the policy <strong>character-for-character</strong> for every decision point. One structured call — no chains, no agents.</p></div>
+    <div class="farrow">→</div>
+    <div class="fstep"><h4>2 · Verify</h4><p><span class="mono">validation.py</span>: normalized exact-substring match against the source, mapped back to a character span. No fuzzy matching, no embeddings — a quote either exists or it doesn't.</p></div>
+    <div class="farrow">→</div>
+    <div class="fstep"><h4>3 · Stamp</h4><p>Pass → <span style="color:var(--verified)">✓ verified + clause highlight</span>.<br>Fail → <span style="color:var(--stamp-red)">✗ rejected in the open</span>, excluded from the decision basis. Never silently dropped.</p></div>
+  </div>
+  <div style="display:flex;gap:70px;margin-top:44px">
+    <div class="kpi">8/8<small>citations verified across live demo scenarios</small></div>
+    <div class="kpi">11/11<small>validation edge cases pass — paraphrase &amp; fabrication rejected</small></div>
+    <div class="kpi">1<small>model call per adjudication</small></div>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1</span><span>the rejection state is a feature</span></div>
+</section>
+
+<!-- 5 · AMD -->
+<section class="slide">
+  <div class="formline"><span>05 · On AMD</span><span>Clause.</span></div>
+  <h2>Open-weight Gemma, AMD-ready by design</h2>
+  <div class="cols">
+    <div class="tight">
+      <ul>
+        <li><strong>Gemma 4 31B IT</strong> (open weights) is the only adjudication model — served via the <strong>Fireworks AI</strong> API on a dedicated deployment.</li>
+        <li>Same app runs Gemma on an <strong>AMD Instinct MI300X</strong> with vLLM on ROCm — 192 GB HBM3 runs it on a single card.</li>
+        <li>Switching is <strong>one environment variable</strong>. No code changes.</li>
+        <li>Open weights + self-hosting = the on-prem, air-gapped deployment story regulated insurers actually require.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:18px">
+      <div class="quote">OPENAI_BASE_URL=https://api.fireworks.ai/inference/v1<br>MODEL_ID=…/gemma-4-31b-it-nvfp4#…/clause-gemma</div>
+      <div style="text-align:center;color:var(--ink-35);font-size:24px">⇅ one env var</div>
+      <div class="quote">OPENAI_BASE_URL=http://mi300x-pod:8000/v1<br>MODEL_ID=google/gemma-4-31b-it &nbsp;<span class="muted"># vLLM · ROCm</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1</span><span>Gemma · Fireworks · MI300X / vLLM / ROCm</span></div>
+</section>
+
+<!-- 6 · market -->
+<section class="slide">
+  <div class="formline"><span>06 · Market</span><span>Clause.</span></div>
+  <h2>The adjudication layer insurers can deploy</h2>
+  <div class="cols">
+    <div class="tight">
+      <ul>
+        <li>Insurers process <strong>hundreds of millions of claims a year</strong>; routine adjudication still costs tens of dollars per claim in expert review time.</li>
+        <li>The blocker was never model quality — it's <strong>auditability</strong>. CLAUSE makes every AI decision defensible line-by-line.</li>
+        <li>Same trust core generalizes: vendor contracts, loan covenants, benefits eligibility, compliance review — any decision that must cite its source.</li>
+        <li><strong>Ask:</strong> design partners in claims ops; pilot on a real closed-claims corpus.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:26px">
+      <span class="stamp" style="color:var(--verified);font-size:44px">Approve</span>
+      <p class="mono" style="font-size:16px;text-align:center">clause-4vv4.onrender.com<br>github.com/Dhevenddra/Clause</p>
+    </div>
+  </div>
+  <div class="foot"><span>CLAUSE v0.1 — every decision, cited</span><span>AMD Developer Hackathon ACT II · Track 3</span></div>
+</section>
+
+</body>
+</html>

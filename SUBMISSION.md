@@ -20,8 +20,15 @@
 - [ ] Short description (≤1 sentence pitch)
 - [ ] Long description (README intro + trust core section)
 - [ ] Tags: Gemma, AMD, Fireworks, FastAPI, agents/fintech as available
-- [ ] Cover image (UI screenshot of a DENY with the citation ledger)
+- [x] Cover image (UI screenshot of a DENY with the citation ledger) → `docs/assets/cover.png`
 - [ ] Video uploaded (MP4, ≤5:00)
 - [ ] Slides PDF
-- [ ] GitHub repo public, tagged v0.1.0
-- [ ] Demo URL live — verify in incognito immediately before submitting
+- [x] GitHub repo public, tagged v0.1.0 → https://github.com/Dhevenddra/Clause
+- [ ] Demo URL live — verify in incognito immediately before submitting → https://clause-4vv4.onrender.com
+
+## Demo-day runbook (record + judge window)
+1. **Warm both layers 5 min before recording/judging:** open https://clause-4vv4.onrender.com (wakes Render, ~50s), then click "Case 03 — Deny" → Adjudicate (wakes the Gemma GPU, ~1–2 min first call). Second call onward is fast (~15–30s incl. reasoning).
+2. Model = `gemma-4-31b-it-nvfp4` on the dedicated Fireworks deployment; scale-to-zero 5 min → each warm demo click ≈ $0.85–1.
+3. Live latencies on real Gemma: APPROVE ~17s · FLAG ~29s · DENY ~11s. Narrate over the loading state (it shows the input SHA-256 hashes — that's a feature, point at it).
+4. Video beat "trust under attack" (replaces "show a rejected citation" — tested: Gemma resists fabrication, which is the stronger story): paste `demo/claim_adversarial.md` as the Claim with the standard demo policy. Observed result: **FLAG, 3/3 verified** — the model refuses to ground the fake "guaranteed replacement value" / "welcome pack guarantee" and checks the inflated ₹25,000/week ask against the real ₹15,000 clause. Narrate: "The claimant invented three policy provisions. CLAUSE grounded none of them — every point on screen is a real clause, verified in code."
+5. To show the ✗ rejected-citation state itself (it's a real code path, verified by `scripts/test_validation.py` — paraphrase and fabrication both rejected): include the 3-second UI still from the test fixture, or run `python scripts/test_validation.py` on camera — 11/11 with explicit "paraphrase must FAIL" lines. Never fake a live rejection.
