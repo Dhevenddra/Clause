@@ -63,3 +63,18 @@
 - Fireworks Gemma deployment: 31B IT offers only 4-GPU shapes ($28–40/hr!). User trying smaller/quantized Gemma variants (NVFP4 → 26B A4B → E4B) per my guidance; also told to cut Scale-to-Zero Window from 60 min to seconds (credit protection)
 
 **Next action:** user reports NVFP4 shape/price → lock deployment → flip MODEL_ID (local .env + Render env via API) → smoke test real Gemma → tune prompts.py rule 2 if verification <70%.
+
+### H5 — Gemma live + trust polish: DONE ✅
+**Done:**
+- Fireworks deployment created by user: gemma-4-31b-it-nvfp4, 1× B200 FP4 $10/hr, autoscale 0–1, 5-min scale-to-zero (DEC-012)
+- MODEL_ID flipped locally + on Render (API); **deployed URL runs real Gemma** — verified: FLAG 3/3 verified, 28s, model string in /health
+- Calibration: worked FLAG example + uncertainty→FLAG rule in prompt; max_tokens 6000 (reasoning stream); flag fixture rewritten to be genuinely pending-evidence
+- All scenarios on real Gemma: APPROVE 10 (4/4), FLAG 50 (3/3), DENY 95 (1/1) — **8/8 citations verified (100%)**, no rule-2 tightening needed
+- README final: live URL, dedicated-deployment MODEL_ID guidance
+- Ops discovery: no GitHub webhook on the API-created Render service → **manual POST /deploys after every push** (env changes also need it)
+
+**Position:** H6 (freeze + package) — README done, Docker verified earlier. Next: tag v0.1.0, then H7 video/deck prep.
+
+**Blockers:** none. Credits: ~$45 Fireworks remaining (est.), Render free tier fine.
+
+**Next action:** tag v0.1.0 + push → H7: cover image, deck outline, video walkthrough on the deployed URL (user records), warm both host + GPU right before recording.
